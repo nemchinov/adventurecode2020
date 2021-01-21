@@ -2,10 +2,14 @@ import mathService from './services/MathService';
 import { numbers } from './data/numbers-1day';
 
 class App {
-  public start(step: number) {
+  public start(step: string) {
     switch (step) {
-      case 1:
-        const result = this.findPair(numbers, 2020);
+      case '1-1':
+        let result = this.findPair(numbers, 2020);
+        console.log(result.join(', '));
+        break;
+      case '1-2':
+        result = this.findN(numbers, 2020, 3);
         console.log(result.join(', '));
         break;
       default:
@@ -14,11 +18,22 @@ class App {
   }
 
   public findPair(payload: number[], sum: number) {
-    const pairs = mathService.findPair(payload, sum);
+    const pairs = mathService.findNItemsEqual(payload, sum, 2);
     const result: string[] = [];
 
     for (const pair of pairs) {
       result.push(`${pair[0]} * ${pair[1]} = ${pair[0] * pair[1]}`);
+    }
+
+    return result;
+  }
+
+  public findN(payload: number[], sum: number, count: number) {
+    const pairs = mathService.findNItemsEqual(payload, sum, count);
+    const result: string[] = [];
+
+    for (const pair of pairs) {
+      result.push(`${pair.join(' * ')} = ${pair.reduce((r,c) => r * c)}`);
     }
 
     return result;

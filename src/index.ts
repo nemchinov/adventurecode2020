@@ -1,7 +1,12 @@
 import app from './app';
 
 async function main() {
-  app.start(1);
+  const steps = [
+    // '1-1',
+    '1-2'
+  ];
+
+  steps.forEach((v) => app.start(v));
 }
 
 main();
