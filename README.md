@@ -1,0 +1,1 @@
+Tring to start solving exercises from https://adventofcode.com/.
