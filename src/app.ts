@@ -3,9 +3,10 @@ import { numbers } from './data/numbers-1day';
 
 class App {
   public start(step: string) {
+    let result;
     switch (step) {
       case '1-1':
-        let result = this.findPair(numbers, 2020);
+        result = this.findPair(numbers, 2020);
         console.log(result.join(', '));
         break;
       case '1-2':

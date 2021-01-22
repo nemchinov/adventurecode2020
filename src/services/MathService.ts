@@ -40,7 +40,7 @@ class MathService {
     // send to recursion function array without last element, sum - A, count--
     // stop if sum <= 0
     // if count === 2 call findPair else go to previous step
-    console.log(numbers, sum, count);
+
     if (count === 2) {
       return this.findPair(numbers, sum);
     } else {
@@ -49,7 +49,7 @@ class MathService {
         const last = numbers.pop();
         const newSum = sum - last;
         if (newSum <= 0 || numbers.length < levelCount) {
-          continue;
+          break;
         }
         const data = this.findNItemsEqualRecursion(numbers, newSum, levelCount);
 
