@@ -1,7 +1,7 @@
-import * as supertest from 'supertest';
 import { assert } from 'chai';
 
 import app from '../src/app';
+import verifyService from '../src/services/VerifyService';
 
 describe('adventure code', () => {
   describe('1 day', () => {
@@ -30,6 +30,19 @@ describe('adventure code', () => {
       const result = app.findN(numbers, 2020, 3);
   
       assert.equal(result[0], '366 * 675 * 979 = 241861950');
+    });
+  });
+
+  describe('2 day', () => {
+    it('step 1', async () => {
+      const rows = [
+        '1-3 a: abcde',
+        '1-3 b: cdefg',
+        '2-9 c: ccccccccc',
+      ];
+      const result = verifyService.getCountValidPasswords(rows);
+  
+      assert.equal(result, 2);
     });
   });
 });
