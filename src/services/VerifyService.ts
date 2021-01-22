@@ -18,6 +18,19 @@ class VerifyService {
     return count;
   }
 
+  public getCountValidPasswordsByPosition(rows: string[]) {
+    let count = 0;
+    const parsedRows = this.parsePasswords(rows);
+
+    parsedRows.forEach(({ password, rule }) => {
+      if (this.checkPasswordByPosition(password, rule)) {
+        count++;
+      }
+    });
+
+    return count;
+  }
+
   public parsePasswords(rows: string[]) {
     const parsedRows = rows.map((row) => {
       const splitData = row.split(':');
@@ -43,6 +56,13 @@ class VerifyService {
     const regexp = new RegExp(rule.letter, 'g')
     const count = (password.match(regexp) || []).length
     return count >= rule.min && count <= rule.max;
+  }
+
+  public checkPasswordByPosition(password: string, rule: PasswordRule) {
+    const firstLetter = password[rule.min - 1];
+    const lastLetter = password[rule.max - 1];
+
+    return firstLetter != lastLetter && (firstLetter === rule.letter || lastLetter === rule.letter);
   }
 }
 

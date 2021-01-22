@@ -6,6 +6,7 @@ import { passwords } from './data/passwords-2day';
 class App {
   public start(step: string) {
     let result;
+    console.log('Result:');
     switch (step) {
       case '1-1':
         result = this.findPair(numbers, 2020);
@@ -17,6 +18,10 @@ class App {
         break;
       case '2-1':
         result = verifyService.getCountValidPasswords(passwords);
+        console.log(result);
+        break;
+      case '2-2':
+        result = verifyService.getCountValidPasswordsByPosition(passwords);
         console.log(result);
         break;
       default:

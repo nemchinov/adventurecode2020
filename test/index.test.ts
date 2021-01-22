@@ -44,5 +44,16 @@ describe('adventure code', () => {
   
       assert.equal(result, 2);
     });
+
+    it('step 2', async () => {
+      const rows = [
+        '1-3 a: abcde',
+        '1-3 b: cdefg',
+        '2-9 c: ccccccccc',
+      ];
+      const result = verifyService.getCountValidPasswordsByPosition(rows);
+  
+      assert.equal(result, 1);
+    });
   });
 });
