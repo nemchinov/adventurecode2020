@@ -2,11 +2,13 @@ import mathService from './services/MathService';
 import verifyService from './services/VerifyService';
 import mapFollowingService from './services/MapFollowingService';
 import passportService from './services/PassportService';
+import flyPassService from './services/FlyPassService';
 
 import { numbers } from './data/numbers-1day';
 import { passwords } from './data/passwords-2day';
 import { map } from './data/map-3day';
 import { passports } from './data/passports-4day';
+import { passes } from './data/pass-5day';
 
 class App {
   public start(step: string) {
@@ -56,6 +58,14 @@ class App {
         break;
       case '4-2':
         result = passportService.getCountValidPassports(passports, true);
+        console.log(result);
+        break;
+      case '5-1':
+        result = flyPassService.getMaxSeatNumber(passes);
+        console.log(result);
+        break;
+      case '5-2':
+        result = flyPassService.getFreeSeatNumber(passes);
         console.log(result);
         break;
       default:

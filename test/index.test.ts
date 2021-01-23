@@ -4,6 +4,7 @@ import app from '../src/app';
 import verifyService from '../src/services/VerifyService';
 import mapFollowingService from '../src/services/MapFollowingService';
 import passportService from '../src/services/PassportService';
+import flyPassService from '../src/services/FlyPassService';
 
 describe('adventure code', () => {
   describe('1 day', () => {
@@ -15,12 +16,12 @@ describe('adventure code', () => {
       675,
       1456,
     ];
-    it('step 1', async () => {
+    it('part 1', () => {
       const result = app.findPair(numbers, 2020);
   
       assert.equal(result[0], '1721 * 299 = 514579');
     });
-    it('step 2', async () => {
+    it('part 2', () => {
       const result = app.findN(numbers, 2020, 3);
   
       assert.equal(result[0], '366 * 675 * 979 = 241861950');
@@ -33,13 +34,13 @@ describe('adventure code', () => {
       '1-3 b: cdefg',
       '2-9 c: ccccccccc',
     ];
-    it('step 1', async () => {
+    it('part 1', () => {
       const result = verifyService.getCountValidPasswords(rows);
   
       assert.equal(result, 2);
     });
 
-    it('step 2', async () => {
+    it('part 2', () => {
       const result = verifyService.getCountValidPasswordsByPosition(rows);
   
       assert.equal(result, 1);
@@ -60,13 +61,13 @@ describe('adventure code', () => {
       '#...##....#',
       '.#..#...#.#',
     ];
-    it('step 1', async () => {
+    it('part 1', () => {
       const result = mapFollowingService.getTreesCount(rows, { right: 3, down: 1 }, { X: 0, Y: 0 });
   
       assert.equal(result, 7);
     });
 
-    it('step 2', async () => {
+    it('part 2', () => {
       const steps = [
         { right: 1, down: 1 },
         { right: 3, down: 1 },
@@ -85,8 +86,8 @@ describe('adventure code', () => {
     });
   });
 
-  describe.only('day 4', () => {
-    it('step 1', async () => {
+  describe('day 4', () => {
+    it('part 1', () => {
       const passports = [
         `ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
         byr:1937 iyr:2017 cid:147 hgt:183cm`,
@@ -104,7 +105,7 @@ describe('adventure code', () => {
       assert.equal(result, 2);
     });
 
-    it('step 2', async () => {
+    it('part 2', () => {
       const invalid = [
         `eyr:1972 cid:100
         hcl:#18171d ecl:amb hgt:170 pid:186cm iyr:2018 byr:1926`,
@@ -133,4 +134,26 @@ describe('adventure code', () => {
       assert.equal(passportService.getCountValidPassports(valid, true), valid.length);
     })
   })
+
+  describe('day 5', () => {
+    it('part 1', () => {
+      const ID = flyPassService.getSeatID(44, 5);
+      assert.equal(ID, 357);
+
+      const rows: [string, number][] = [
+        ['FBFBBFFRLR', 357],
+        ['BFFFBBFRRR', 567],
+        ['FFFBBBFRRR', 119],
+        ['BBFFBBFRLL', 820],
+      ];
+
+      rows.forEach(([key, id]) => {
+        assert.equal(flyPassService.parseSeatKey(key), id);
+      });
+
+      assert.equal(flyPassService.getMaxSeatNumber(rows.map((row) => row[0])), 820);
+    });
+
+    it('part 2', () => {});
+  });
 });
