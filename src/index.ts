@@ -6,7 +6,8 @@ async function main() {
     // '1-2',
     // '2-1',
     // '2-2',
-    '3-1',
+    // '3-1',
+    '3-2',
   ];
 
   steps.forEach((v) => app.start(v));

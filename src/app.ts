@@ -30,6 +30,23 @@ class App {
         result = mapFollowingService.getTreesCount(map, { right: 3, down: 1 }, { X: 0, Y: 0 });
         console.log(result);
         break;
+      case '3-2':
+        const steps = [
+          { right: 1, down: 1 },
+          { right: 3, down: 1 },
+          { right: 5, down: 1 },
+          { right: 7, down: 1 },
+          { right: 1, down: 2 },
+        ];
+        let multiple = 1;
+  
+        steps.forEach((step) => {
+          const result = mapFollowingService.getTreesCount(map, step, { X: 0, Y: 0 });
+          multiple *= result;
+        });
+
+        console.log(multiple);
+        break;
       default:
         throw new Error('Unknown step');
     }
