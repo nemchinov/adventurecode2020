@@ -74,6 +74,10 @@ class App {
         result = declarationService.getGroupsCountAnswers(answers);
         console.log(result.reduce((c, v) => (c + v), 0));
         break;
+      case '6-2':
+        result = declarationService.getGroupsCountSameAnswers(answers);
+        console.log(result.reduce((c, v) => (c + v), 0));
+        break;
       default:
         throw new Error('Unknown step');
     }

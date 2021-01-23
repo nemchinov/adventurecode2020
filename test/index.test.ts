@@ -157,22 +157,28 @@ describe('adventure code', () => {
   });
 
   describe('day 6', () => {
+    const answers = [
+      `abc`,
+      `a
+      b
+      c`,
+      `ab
+      ac`,
+      `a
+      a
+      a
+      a`,
+      `b`,
+    ];
+
     it('part 1', () => {
-      const answers = [
-        `abc`,
-        `a
-        b
-        c`,
-        `ab
-        ac`,
-        `a
-        a
-        a
-        a`,
-        `b`,
-      ];
       const result = declarationService.getGroupsCountAnswers(answers);
       assert.equal(result.reduce((c, v) => (c + v), 0), 11);
+    });
+
+    it('part 2', () => {
+      const result = declarationService.getGroupsCountSameAnswers(answers);
+      assert.equal(result.reduce((c, v) => (c + v), 0), 6);
     });
   });
 });
