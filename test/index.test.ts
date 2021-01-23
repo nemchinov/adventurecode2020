@@ -2,6 +2,7 @@ import { assert } from 'chai';
 
 import app from '../src/app';
 import verifyService from '../src/services/VerifyService';
+import mapFollowingService from '../src/services/MapFollowingService'
 
 describe('adventure code', () => {
   describe('1 day', () => {
@@ -54,6 +55,31 @@ describe('adventure code', () => {
       const result = verifyService.getCountValidPasswordsByPosition(rows);
   
       assert.equal(result, 1);
+    });
+  });
+
+  describe('3 day', () => {
+    it('step 1', async () => {
+      const rows = [
+        '..##.......',
+        '#...#...#..',
+        '.#....#..#.',
+        '..#.#...#.#',
+        '.#...##..#.',
+        '..#.##.....',
+        '.#.#.#....#',
+        '.#........#',
+        '#.##...#...',
+        '#...##....#',
+        '.#..#...#.#',
+      ];
+      const result = mapFollowingService.getTreesCount(rows, { right: 3, down: 1 }, { X: 0, Y: 0 });
+  
+      assert.equal(result, 7);
+    });
+
+    it('step 2', async () => {
+
     });
   });
 });

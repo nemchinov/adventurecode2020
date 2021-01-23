@@ -1,7 +1,9 @@
 import mathService from './services/MathService';
 import verifyService from './services/VerifyService';
+import mapFollowingService from './services/MapFollowingService';
 import { numbers } from './data/numbers-1day';
 import { passwords } from './data/passwords-2day';
+import { map } from './data/map-3day';
 
 class App {
   public start(step: string) {
@@ -22,6 +24,10 @@ class App {
         break;
       case '2-2':
         result = verifyService.getCountValidPasswordsByPosition(passwords);
+        console.log(result);
+        break;
+      case '3-1':
+        result = mapFollowingService.getTreesCount(map, { right: 3, down: 1 }, { X: 0, Y: 0 });
         console.log(result);
         break;
       default:
