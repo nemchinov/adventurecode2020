@@ -1,9 +1,12 @@
 import mathService from './services/MathService';
 import verifyService from './services/VerifyService';
 import mapFollowingService from './services/MapFollowingService';
+import passportService from './services/PassportService';
+
 import { numbers } from './data/numbers-1day';
 import { passwords } from './data/passwords-2day';
 import { map } from './data/map-3day';
+import { passports } from './data/passports-4day';
 
 class App {
   public start(step: string) {
@@ -46,6 +49,21 @@ class App {
         });
 
         console.log(multiple);
+        break;
+      case '4-1':
+        const fields = [
+          'byr',
+          'iyr',
+          'eyr',
+          'hgt',
+          'hcl',
+          'ecl',
+          'pid',
+          'cid',
+        ];
+        const canSkip = ['cid'];
+        result = passportService.getCountValidPassports(passports, fields, canSkip);
+        console.log(result);
         break;
       default:
         throw new Error('Unknown step');
