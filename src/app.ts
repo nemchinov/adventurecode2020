@@ -51,18 +51,11 @@ class App {
         console.log(multiple);
         break;
       case '4-1':
-        const fields = [
-          'byr',
-          'iyr',
-          'eyr',
-          'hgt',
-          'hcl',
-          'ecl',
-          'pid',
-          'cid',
-        ];
-        const canSkip = ['cid'];
-        result = passportService.getCountValidPassports(passports, fields, canSkip);
+        result = passportService.getCountValidPassports(passports);
+        console.log(result);
+        break;
+      case '4-2':
+        result = passportService.getCountValidPassports(passports, true);
         console.log(result);
         break;
       default:
