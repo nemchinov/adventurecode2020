@@ -3,12 +3,14 @@ import verifyService from './services/VerifyService';
 import mapFollowingService from './services/MapFollowingService';
 import passportService from './services/PassportService';
 import flyPassService from './services/FlyPassService';
+import declarationService from './services/DeclarationService';
 
 import { numbers } from './data/numbers-1day';
 import { passwords } from './data/passwords-2day';
 import { map } from './data/map-3day';
 import { passports } from './data/passports-4day';
 import { passes } from './data/pass-5day';
+import { answers } from './data/declaration-6day'; 
 
 class App {
   public start(step: string) {
@@ -67,6 +69,10 @@ class App {
       case '5-2':
         result = flyPassService.getFreeSeatNumber(passes);
         console.log(result);
+        break;
+      case '6-1':
+        result = declarationService.getGroupsCountAnswers(answers);
+        console.log(result.reduce((c, v) => (c + v), 0));
         break;
       default:
         throw new Error('Unknown step');

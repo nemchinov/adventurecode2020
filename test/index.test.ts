@@ -5,9 +5,10 @@ import verifyService from '../src/services/VerifyService';
 import mapFollowingService from '../src/services/MapFollowingService';
 import passportService from '../src/services/PassportService';
 import flyPassService from '../src/services/FlyPassService';
+import declarationService from '../src/services/DeclarationService';
 
 describe('adventure code', () => {
-  describe('1 day', () => {
+  describe('day 1', () => {
     const numbers = [
       1721,
       979,
@@ -28,7 +29,7 @@ describe('adventure code', () => {
     });
   });
 
-  describe('2 day', () => {
+  describe('day 2', () => {
     const rows = [
       '1-3 a: abcde',
       '1-3 b: cdefg',
@@ -47,7 +48,7 @@ describe('adventure code', () => {
     });
   });
 
-  describe('3 day', () => {
+  describe('day 3', () => {
     const rows = [
       '..##.......',
       '#...#...#..',
@@ -153,7 +154,25 @@ describe('adventure code', () => {
 
       assert.equal(flyPassService.getMaxSeatNumber(rows.map((row) => row[0])), 820);
     });
+  });
 
-    it('part 2', () => {});
+  describe('day 6', () => {
+    it('part 1', () => {
+      const answers = [
+        `abc`,
+        `a
+        b
+        c`,
+        `ab
+        ac`,
+        `a
+        a
+        a
+        a`,
+        `b`,
+      ];
+      const result = declarationService.getGroupsCountAnswers(answers);
+      assert.equal(result.reduce((c, v) => (c + v), 0), 11);
+    });
   });
 });
