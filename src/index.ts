@@ -13,7 +13,9 @@ async function main() {
     // '5-1',
     // '5-2',
     // '6-1',
-    '6-2',
+    // '6-2',
+    // '7-1',
+    '7-2',
   ];
 
   steps.forEach((v) => app.start(v));

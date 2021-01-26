@@ -6,6 +6,7 @@ import mapFollowingService from '../src/services/MapFollowingService';
 import passportService from '../src/services/PassportService';
 import flyPassService from '../src/services/FlyPassService';
 import declarationService from '../src/services/DeclarationService';
+import bagService from '../src/services/BagService';
 
 describe('adventure code', () => {
   describe('day 1', () => {
@@ -179,6 +180,27 @@ describe('adventure code', () => {
     it('part 2', () => {
       const result = declarationService.getGroupsCountSameAnswers(answers);
       assert.equal(result.reduce((c, v) => (c + v), 0), 6);
+    });
+  });
+
+  describe('day 7', () => {
+    const rules = [
+      'light red bags contain 1 bright white bag, 2 muted yellow bags',
+      'dark orange bags contain 3 bright white bags, 4 muted yellow bags',
+      'bright white bags contain 1 shiny gold bag',
+      'muted yellow bags contain 2 shiny gold bags, 9 faded blue bags',
+      'shiny gold bags contain 1 dark olive bag, 2 vibrant plum bags',
+      'dark olive bags contain 3 faded blue bags, 4 dotted black bags',
+      'vibrant plum bags contain 5 faded blue bags, 6 dotted black bags',
+      'faded blue bags contain no other bags',
+      'dotted black bags contain no other bags',
+    ];
+    it('part 1', () => {
+      const result = bagService.getBagColorsByContainColor(rules, 'shiny gold');
+      assert.equal(result, 4);
+    });
+    it.only('part 2', () => {
+
     });
   });
 });

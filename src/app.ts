@@ -4,13 +4,15 @@ import mapFollowingService from './services/MapFollowingService';
 import passportService from './services/PassportService';
 import flyPassService from './services/FlyPassService';
 import declarationService from './services/DeclarationService';
+import bagService from './services/BagService';
 
 import { numbers } from './data/numbers-1day';
 import { passwords } from './data/passwords-2day';
 import { map } from './data/map-3day';
 import { passports } from './data/passports-4day';
 import { passes } from './data/pass-5day';
-import { answers } from './data/declaration-6day'; 
+import { answers } from './data/declaration-6day';
+import { rules } from './data/bagsRules7';
 
 class App {
   public start(step: string) {
@@ -77,6 +79,14 @@ class App {
       case '6-2':
         result = declarationService.getGroupsCountSameAnswers(answers);
         console.log(result.reduce((c, v) => (c + v), 0));
+        break;
+      case '7-1':
+        result = bagService.getBagColorsByContainColor(rules, 'shiny gold');
+        console.log(result);
+        break;
+      case '7-2':
+        result = bagService.getBagColorsByContainColor(rules, 'shiny gold');
+        console.log(result);
         break;
       default:
         throw new Error('Unknown step');
