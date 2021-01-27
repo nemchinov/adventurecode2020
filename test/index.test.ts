@@ -7,6 +7,7 @@ import passportService from '../src/services/PassportService';
 import flyPassService from '../src/services/FlyPassService';
 import declarationService from '../src/services/DeclarationService';
 import bagService from '../src/services/BagService';
+import codeRunService from '../src/services/CodeRunService';
 
 describe('adventure code', () => {
   describe('day 1', () => {
@@ -208,12 +209,35 @@ describe('adventure code', () => {
       const result = bagService.getBagColorsByContainColor(rules, 'shiny gold');
       assert.equal(result, 4);
     });
-    it.only('part 2', () => {
+    it('part 2', () => {
       let result = bagService.getBagsCount(rules, 'shiny gold');
       assert.equal(result, 32);
 
       result = bagService.getBagsCount(rules2, 'shiny gold');
       assert.equal(result, 126);
+    });
+  });
+
+  describe('day 8', () => {
+    const  instructions = [
+      'nop +0',
+      'acc +1',
+      'jmp +4',
+      'acc +3',
+      'jmp -3',
+      'acc -99',
+      'acc +1',
+      'jmp -4',
+      'acc +6',
+    ];
+
+    it('part 1', () => {
+      const result = codeRunService.getValueBeforeLoop(instructions);
+      assert.equal(result.value, 5);
+    });
+    it.only('part 2', () => {
+      const result = codeRunService.getValue(instructions);
+      assert.equal(result, 8);
     });
   });
 });

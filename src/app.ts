@@ -5,6 +5,7 @@ import passportService from './services/PassportService';
 import flyPassService from './services/FlyPassService';
 import declarationService from './services/DeclarationService';
 import bagService from './services/BagService';
+import codeRunService from './services/CodeRunService';
 
 import { numbers } from './data/numbers-1day';
 import { passwords } from './data/passwords-2day';
@@ -13,6 +14,7 @@ import { passports } from './data/passports-4day';
 import { passes } from './data/pass-5day';
 import { answers } from './data/declaration-6day';
 import { rules } from './data/bagsRules7';
+import { instructions } from './data/comands8';
 
 class App {
   public start(step: string) {
@@ -86,6 +88,14 @@ class App {
         break;
       case '7-2':
         result = bagService.getBagsCount(rules, 'shiny gold');
+        console.log(result);
+        break;
+      case '8-1':
+        result = codeRunService.getValueBeforeLoop(instructions);
+        console.log(result.value);
+        break;
+      case '8-2':
+        result = codeRunService.getValue(instructions);
         console.log(result);
         break;
       default:
