@@ -195,12 +195,25 @@ describe('adventure code', () => {
       'faded blue bags contain no other bags',
       'dotted black bags contain no other bags',
     ];
+    const rules2 = [
+      'shiny gold bags contain 2 dark red bags',
+      'dark red bags contain 2 dark orange bags',
+      'dark orange bags contain 2 dark yellow bags',
+      'dark yellow bags contain 2 dark green bags',
+      'dark green bags contain 2 dark blue bags',
+      'dark blue bags contain 2 dark violet bags',
+      'dark violet bags contain no other bags',
+    ];
     it('part 1', () => {
       const result = bagService.getBagColorsByContainColor(rules, 'shiny gold');
       assert.equal(result, 4);
     });
     it.only('part 2', () => {
+      let result = bagService.getBagsCount(rules, 'shiny gold');
+      assert.equal(result, 32);
 
+      result = bagService.getBagsCount(rules2, 'shiny gold');
+      assert.equal(result, 126);
     });
   });
 });

@@ -4,44 +4,58 @@ type RulesMap = {
   };
 };
 
+enum Sort {
+  ASC = 'asc',
+  DESC = 'desc',
+};
+
 class BagService {
   public getBagColorsByContainColor(rules: string[], searchColor: string) {
-    const { rulesMap, lists } = this.getRulesMap(rules);
-    const colors = this.getbagsChain(rulesMap, searchColor);
+    const rulesMap = this.getRulesMap(rules);
+    const colors = this.getBagsChain(rulesMap, searchColor);
     return (new Set((colors as any).flat())).size;
   }
 
-  public getRulesMap(rules: string[]) {
+  public getBagsCount(rules: string[], searchColor: string) {
+    const rulesMap = this.getRulesMap(rules, Sort.DESC);
+    return this.getBugsCount(rulesMap, searchColor);
+  }
+
+  private getRulesMap(rules: string[], sort: Sort = Sort.ASC) {
     const rulesMap:RulesMap = {};
-    const lists = new Set();
-    const tops = new Set();
+    const isAcs = sort === Sort.ASC;
 
     rules.forEach((row) => {
       const mainColor = row.replace(/\sbags contain.*/, '');
       const children = row.replace(/.*\sbags contain\s/, '').split(', ');
 
-      if (children[0] === 'no other bags') {
-        lists.add(mainColor);
-        return;
+      if (children[0].trim() === 'no other bags') {
+          return;
+      }
+      
+      if (!isAcs && !rulesMap[mainColor]) {
+        rulesMap[mainColor] = {};
       }
 
-      tops.add(mainColor);
       children.forEach((child) => {
         const count = Number(child.replace(/\s.*bag.?/, ''));
         const color = child.replace(/\d*\s/, '').replace(/\sbag.?/, '');
 
-        if (!rulesMap[color]) {
-          rulesMap[color] = {};
+        if (isAcs) {
+          if (!rulesMap[color]) {
+            rulesMap[color] = {};
+          }
+          rulesMap[color][mainColor] = count;
+        } else {
+          rulesMap[mainColor][color] = count;
         }
-        rulesMap[color][mainColor] = count;
-        tops.delete(color);
       });
     });
 
-    return { rulesMap, lists: Array.from(lists.keys()), tops: Array.from(tops.keys()) };
+    return rulesMap;
   }
 
-  private getbagsChain(rules: RulesMap, searchColor: string) {
+  private getBagsChain(rules: RulesMap, searchColor: string) {
     const colors: string[][] = [];
 
     if(!rules[searchColor]) {
@@ -49,7 +63,7 @@ class BagService {
     }
     
     for (const color of Object.keys(rules[searchColor])) {
-      const topColors = this.getbagsChain(rules, color);
+      const topColors = this.getBagsChain(rules, color);
       if (!topColors.length) {
         colors.push([color]);
       }
@@ -59,6 +73,22 @@ class BagService {
     }
 
     return colors;
+  }
+
+  private getBugsCount(rules: RulesMap, searchColor: string) {
+    let count = 0;
+
+    if(!rules[searchColor]) {
+      return count;
+    }
+
+    for (const color of Object.keys(rules[searchColor])) {
+      const countInside = this.getBugsCount(rules, color);
+
+      count += rules[searchColor][color] + countInside * rules[searchColor][color];
+    }
+
+    return count;
   }
 }
 

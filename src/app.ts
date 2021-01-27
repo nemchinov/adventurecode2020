@@ -85,7 +85,7 @@ class App {
         console.log(result);
         break;
       case '7-2':
-        result = bagService.getBagColorsByContainColor(rules, 'shiny gold');
+        result = bagService.getBagsCount(rules, 'shiny gold');
         console.log(result);
         break;
       default:
