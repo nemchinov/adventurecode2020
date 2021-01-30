@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 
 import app from '../src/app';
 import verifyService from '../src/services/VerifyService';
@@ -8,6 +8,7 @@ import flyPassService from '../src/services/FlyPassService';
 import declarationService from '../src/services/DeclarationService';
 import bagService from '../src/services/BagService';
 import codeRunService from '../src/services/CodeRunService';
+import codeParseService from '../src/services/CodeParseService';
 
 describe('adventure code', () => {
   describe('day 1', () => {
@@ -235,9 +236,94 @@ describe('adventure code', () => {
       const result = codeRunService.getValueBeforeLoop(instructions);
       assert.equal(result.value, 5);
     });
-    it.only('part 2', () => {
+    it('part 2', () => {
       const result = codeRunService.getValue(instructions);
       assert.equal(result, 8);
     });
   });
+
+  describe('day 9', () => {
+    const data = [
+      35,
+      20,
+      15,
+      25,
+      47,
+      40,
+      62,
+      55,
+      65,
+      95,
+      102,
+      117,
+      150,
+      182,
+      127,
+      219,
+      299,
+      277,
+      309,
+      576,
+    ];
+    it.only('part 1', () => {
+      const result = codeParseService.getExtraNumber(data, 5);
+      expect(result).equal(127);
+    });
+    it('part 2', () => {});
+  });
+
+  describe('day 10', () => {
+    it('part 1', () => {});
+    it('part 2', () => {});
+  });
+
+  describe('day 11', () => {
+    it('part 1', () => {});
+    it('part 2', () => {});
+  });
+
+  describe('day 12', () => {
+    it('part 1', () => {});
+    it('part 2', () => {});
+  });
+
+  describe('day 13', () => {
+    it('part 1', () => {});
+    it('part 2', () => {});
+  });
+  
+  describe('day 14', () => {
+    it('part 1', () => {});
+    it('part 2', () => {});
+  });
+  
+  describe('day 15', () => {
+    it('part 1', () => {});
+    it('part 2', () => {});
+  });
+  
+  describe('day 16', () => {
+    it('part 1', () => {});
+    it('part 2', () => {});
+  });
+  
+  describe('day 17', () => {
+    it('part 1', () => {});
+    it('part 2', () => {});
+  });
+  
+  describe('day 18', () => {
+    it('part 1', () => {});
+    it('part 2', () => {});
+  });
+  
+  describe('day 19', () => {
+    it('part 1', () => {});
+    it('part 2', () => {});
+  });
+  
+  describe('day 20', () => {
+    it('part 1', () => {});
+    it('part 2', () => {});
+  });  
 });

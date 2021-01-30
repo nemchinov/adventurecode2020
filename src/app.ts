@@ -6,6 +6,7 @@ import flyPassService from './services/FlyPassService';
 import declarationService from './services/DeclarationService';
 import bagService from './services/BagService';
 import codeRunService from './services/CodeRunService';
+import codeParseService from './services/CodeParseService';
 
 import { numbers } from './data/numbers-1day';
 import { passwords } from './data/passwords-2day';
@@ -15,6 +16,7 @@ import { passes } from './data/pass-5day';
 import { answers } from './data/declaration-6day';
 import { rules } from './data/bagsRules7';
 import { instructions } from './data/comands8';
+import { codes } from './data/code9';
 
 class App {
   public start(step: string) {
@@ -96,6 +98,79 @@ class App {
         break;
       case '8-2':
         result = codeRunService.getValue(instructions);
+        console.log(result);
+        break;
+      case '9-1':
+        result = codeParseService.getExtraNumber(codes, 25);
+        console.log(result);
+        break;
+      case '9-2':
+        console.log(result);
+        break;
+      case '10-1':
+        console.log(result);
+        break;
+      case '10-2':
+        console.log(result);
+        break;
+      case '11-1':
+        console.log(result);
+        break;
+      case '11-2':
+        console.log(result);
+        break;
+      case '12-1':
+        console.log(result);
+        break;
+      case '12-2':
+        console.log(result);
+        break;
+      case '13-1':
+        console.log(result);
+        break;
+      case '13-2':
+        console.log(result);
+        break;
+      case '14-1':
+        console.log(result);
+        break;
+      case '14-2':
+        console.log(result);
+        break;
+      case '15-1':
+        console.log(result);
+        break;
+      case '15-2':
+        console.log(result);
+        break;
+      case '16-1':
+        console.log(result);
+        break;
+      case '16-2':
+        console.log(result);
+        break;
+      case '17-1':
+        console.log(result);
+        break;
+      case '17-2':
+        console.log(result);
+        break;
+      case '18-1':
+        console.log(result);
+        break;
+      case '18-2':
+        console.log(result);
+        break;
+      case '19-1':
+        console.log(result);
+        break;
+      case '19-2':
+        console.log(result);
+        break;
+      case '20-1':
+        console.log(result);
+        break;
+      case '20-2':
         console.log(result);
         break;
       default:
