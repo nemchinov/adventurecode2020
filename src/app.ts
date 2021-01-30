@@ -105,7 +105,8 @@ class App {
         console.log(result);
         break;
       case '9-2':
-        console.log(result);
+        result = codeParseService.getSumRangeForExtraNumber(codes, 25);
+        console.log(result[0] + result[result.length - 1]);
         break;
       case '10-1':
         console.log(result);

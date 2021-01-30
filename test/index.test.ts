@@ -265,11 +265,14 @@ describe('adventure code', () => {
       309,
       576,
     ];
-    it.only('part 1', () => {
+    it('part 1', () => {
       const result = codeParseService.getExtraNumber(data, 5);
       expect(result).equal(127);
     });
-    it('part 2', () => {});
+    it('part 2', () => {
+      const result = codeParseService.getSumRangeForExtraNumber(data, 5);
+      expect(result[0] + result[1]).equal(62);
+    });
   });
 
   describe('day 10', () => {
